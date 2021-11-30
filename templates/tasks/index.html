@@ -1,0 +1,40 @@
+{% extends "tasks/base.html" %}
+
+{% block body %}
+    <form action="{% url 'add' %}" method="post">
+        {% csrf_token %}
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Add tasks" name="task">
+            <input type="submit" value="ADD" class="btn btn-primary">
+        </div>
+    </form>
+    {% for task in tasks %}
+        {%  if task.complete or task.updated_at %}
+            <div class="task row completed">
+                <div class="col-md-6 mb-3 strike">
+                    <b>{{ task }}</b><br>
+                    <div class="created-at">Created at: {{ task.created_at }}</div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="{% url 'update_task' task.id %}" class="btn btn-primary btn-sm">Update</a>
+                    <a href="{% url 'delete_task' task.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+            </div>
+        {% else %}
+            <div class="task row not-completed">
+                <div class="col-md-6 mb-3">
+                    <b>{{ task }}</b><br>
+                    <div class="created-at">Created at: {{ task.created_at }}</div>
+                    {% if task.updated_at > task.created_at %}
+                        <div class="updated-at">Updated at: {{ task.updated_at }}</div>
+                        {% endif %}
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="{% url 'complete' task.id %}" class="btn btn-success btn-sm">Completed</a>
+                    <a href="{% url 'update_task' task.id %}" class="btn btn-primary btn-sm">Update</a>
+                    <a href="{% url 'delete_task' task.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+            </div>
+        {%  endif %}
+    {% endfor %}
+{% endblock %}

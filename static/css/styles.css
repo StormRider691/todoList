@@ -1,0 +1,39 @@
+body
+{
+    background-color: #fafafa;
+    margin: 3rem 0;
+}
+.badge
+{
+    font-size: 1.2rem;
+    border-radius: 3px;
+    padding: 0.2em;
+    line-height: 1.2em; /* says line height should be 2em in guide but it seems to large */
+    color: #fe6993;
+    background-color: rgba(253,105,147,0.1);
+}
+.task.completed
+{
+    background-color:#eeeeee;
+    color: gray;
+}
+.task.not-completed{
+    background-color: white;
+}
+.strike{
+    text-decoration: line-through;
+}
+.created-at
+{
+    font-size: 0.7rem;
+    color: gray;
+}
+.task
+{
+    border-color: silver;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: .25rem;
+    margin: 10px;
+    padding: 10px;
+}
